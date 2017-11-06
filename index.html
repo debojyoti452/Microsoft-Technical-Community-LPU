@@ -57,6 +57,8 @@ support of Microsoft at back , and your good wishes we wish to energize today's 
         gtag('config', 'UA-106313500-1');
     </script>
     <script type="text/javascript" data-cfasync="false" src="//dsms0mj1bbhn4.cloudfront.net/assets/pub/shareaholic.js" data-shr-siteid="8972e53157d800c8454cbe7c0a293687" async="async"></script>
+
+
 </head>
 
 <body>
@@ -415,8 +417,30 @@ support of Microsoft at back , and your good wishes we wish to energize today's 
 
     <!-- Main JS (Do not remove) -->
     <script src="js/main.js "></script>
-    <script src="js/contact.js"></script>
-    <script src="js/jqBootstrapValidation.js"></script>
+
+    <!-- Email Service -->
+    <script>
+        $(document).ready(function() {
+            $("#contactForm").submit(function(event) {
+                event.preventDefault();
+                $.ajax({
+                    url: "https://www.enformed.io/a55ohil",
+                    method: "post",
+                    dataType: "json",
+                    accepts: "application/json",
+                    data: $("#contactForm").serialize(),
+                    success: function() {
+                        console.log("Your form was successfully received!");
+                        // Show a success message here...
+                    },
+                    error: function() {
+                        console.log("Failure. Try again.");
+                        // Show an error message here...
+                    }
+                });
+            });
+        });
+    </script>
 
 </body>
 
