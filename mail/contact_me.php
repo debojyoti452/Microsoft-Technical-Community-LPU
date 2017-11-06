@@ -1,26 +1,28 @@
 <?php
-// Check for empty fields
-if(empty($_POST['name'])      ||
-   empty($_POST['email'])     ||
-   empty($_POST['phone'])     ||
-   empty($_POST['message'])   ||
-   !filter_var($_POST['email'],FILTER_VALIDATE_EMAIL))
-   {
-   echo "No arguments Provided!";
-   return false;
-   }
-   
-$name = strip_tags(htmlspecialchars($_POST['name']));
-$email_address = strip_tags(htmlspecialchars($_POST['email']));
-$phone = strip_tags(htmlspecialchars($_POST['phone']));
-$message = strip_tags(htmlspecialchars($_POST['message']));
-   
-// Create the email and send the message
-$to = 'rowhitswami1@gmail.com'; 
-$email_subject = "Website Contact Form:  $name";
-$email_body = "You have received a new message from your website contact form.\n\n"."Here are the details:\n\nName: $name\n\nEmail: $email_address\n\nPhone: $phone\n\nMessage:\n$message";
-$headers = "From: noreply@rohitswami.com\n";
-$headers .= "Reply-To: $email_address";   
-mail($to,$email_subject,$email_body,$headers);
-return true;         
+  if(isset($_POST['submit'])){
+    $to = "rowhitswami1@gmail.com"; // this is your Email address
+    $from = $_POST['email']; // this is the sender's Email address
+    $first_name = $_POST['name'];
+    $email_id = $_POST['email'];
+    $phone_no = $_POST['phone'];
+    $message = $_POST['email'];
+
+    $subject = "Form submission";
+    $message = $first_name . " wrote the following:" . "\n\n" . $_POST['message'];
+    
+
+    $headers = "From:" . $from;
+    $headers.= "From:" . $to;
+    $headers.="Content-type: text/html; charset=utf-8";
+    $headers.="MIME-version: 1.0\r\n";
+
+    $send = mail($to,$subject,$phone_no,$message,$headers);
+    
+    if ($send) {
+    echo "Thanks For Submitting. We will shortly contact you.";
+    }else{
+    	echo "error";
+    }
+}
+    
 ?>
